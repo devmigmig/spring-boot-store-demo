@@ -26,7 +26,7 @@ public class Item {
     @Past(message = "Date must be of the past")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    
+
     private String id;
 
     public Item() {
@@ -82,4 +82,3 @@ public class Item {
     }
 
 }
-
