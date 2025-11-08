@@ -31,14 +31,27 @@ public class StoreServiceTest {
     public void getItemsFromRepoTest() throws Exception{
         when(storeRepository.getItems()).thenReturn(
             Arrays.asList(
-                new Item("Cabinet", 25.0, 13.25, new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01"))
+                new Item("Cabinet", 25.0, 13.25, new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01")),
+                new Item("Desktop", 128.33, 35.78, new SimpleDateFormat("yyyy-MM-dd").parse("2023-05-02"))
             )
         );
 
         List<Item> result = storeService.getItems();
 
-        assertEquals("Cabinet", result.get(0).getName());
+        assertEquals(2, result.size());
+       
 
+        Item firstItem = result.get(0);
+        assertEquals("Cabinet", firstItem.getName());
+        assertEquals(25.0, firstItem.getPrice(), 0.001);
+        assertEquals(13.25, firstItem.getDiscount(), 0.001);
+        assertEquals(new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01"), firstItem.getDate());
+
+        Item secondItem = result.get(1);
+        assertEquals("Desktop", secondItem.getName());
+        assertEquals(128.33, secondItem.getPrice(), 0.001);
+        assertEquals(35.78, secondItem.getDiscount(), 0.001);
+        assertEquals(new SimpleDateFormat("yyyy-MM-dd").parse("2023-05-02"), secondItem.getDate());
     }
     
 
