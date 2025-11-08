@@ -29,6 +29,13 @@ public class Item {
 
     private String id;
 
+    public Item(String name, Double price, Double discount, Date date){
+        this.name = name;
+        this.price = price;
+        this.discount = discount;
+        this.date = date;
+    }
+
     public Item() {
         this.id = UUID.randomUUID().toString();
     }
@@ -80,5 +87,9 @@ public class Item {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    
+
+   
 
 }
