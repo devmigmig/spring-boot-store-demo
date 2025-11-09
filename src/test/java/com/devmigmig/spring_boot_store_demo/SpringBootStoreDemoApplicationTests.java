@@ -49,4 +49,14 @@ class SpringBootStoreDemoApplicationTests {
 			.andExpect(redirectedUrl("/inventory"));
 	}
 
+	@Test
+	public void testGetItems() throws Exception{
+		RequestBuilder request =  MockMvcRequestBuilders.get("/inventory");
+
+		mockMvc.perform(request)
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(view().name("inventory"))
+			.andExpect(model().attributeExists("items"));
+	}
+
 }
