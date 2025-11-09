@@ -86,7 +86,9 @@ public class StoreServiceTest {
             Arrays.asList(item)
         );
 
-        when(storeRepository.getItem(0)).thenReturn(item);
+        when(storeRepository.getItem(0)).thenReturn(
+            item
+        );
 
         String id = item.getId();
         Item result = storeService.getItemfromId(id);
@@ -102,6 +104,23 @@ public class StoreServiceTest {
         verify(storeRepository, times(1)).addItem(newItem);
     }
 
-    
+    @Test
+    public void updateItemTest() throws Exception{
+        Item item = new Item("Cabinet", 25.0, 13.25, new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01"));
+
+         when(storeRepository.getItems()).thenReturn(
+            Arrays.asList(item)
+        );
+
+        when(storeRepository.getItem(0)).thenReturn(
+            item
+        );
+
+        item.setName("PC");
+        storeService.handleSubmit(item);
+
+        verify(storeRepository, times(1)).updateItem(item, 0);
+    }
+
 
 }
