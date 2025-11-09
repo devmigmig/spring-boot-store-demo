@@ -55,7 +55,7 @@ public class StoreServiceTest {
     }
 
     @Test
-    public void itemIndexTest() throws Exception{
+    public void getIndexFromIdTest() throws Exception{
         Item item = new Item("Cabinet", 25.0, 13.25, new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01"));
 
         when(storeRepository.getItems()).thenReturn(
@@ -76,6 +76,20 @@ public class StoreServiceTest {
         assertEquals(Constants.NOT_FOUND, notFound);
     }
     
+    @Test
+    public void returnItemByIdTest() throws Exception{
+        Item item = new Item("Cabinet", 25.0, 13.25, new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01"));
 
+        when(storeRepository.getItems()).thenReturn(
+            Arrays.asList(item)
+        );
+
+        when(storeRepository.getItem(0)).thenReturn(item);
+
+        String id = item.getId();
+        Item result = storeService.getItemfromId(id);
+
+        assertEquals(item, result);
+    }
 
 }
