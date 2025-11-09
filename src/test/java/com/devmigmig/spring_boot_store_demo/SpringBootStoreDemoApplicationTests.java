@@ -35,4 +35,18 @@ class SpringBootStoreDemoApplicationTests {
 			.andExpect(model().attributeExists("item"));
 	}
 
+	@Test
+	public void testSuccessfulSubmission() throws Exception{
+		RequestBuilder request = MockMvcRequestBuilders.post("/submitItem")
+			.param("category", "Softwaree")
+			.param("name", "Microsoft")
+			.param("price", "23.56")
+			.param("discount", "1.67")
+			.param("date", "2024-01-03");
+
+			mockMvc.perform(request)
+			.andExpect(status().is3xxRedirection())
+			.andExpect(redirectedUrl("/inventory"));
+	}
+
 }
