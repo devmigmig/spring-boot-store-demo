@@ -1,6 +1,8 @@
 package com.devmigmig.spring_boot_store_demo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -8,7 +10,9 @@ import static org.mockito.Mockito.when;
 import java.text.SimpleDateFormat;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -122,5 +126,22 @@ public class StoreServiceTest {
         verify(storeRepository, times(1)).updateItem(item, 0);
     }
 
+    @Test
+    public void within5DaysTest_Success(){
+        Date newDate = new Date();
+        Date oldDate = new Date(newDate.getTime() - TimeUnit.DAYS.toMillis(3));
+
+        boolean result = storeService.within5Days(newDate, oldDate);
+        assertTrue(result);
+    }
+
+    @Test
+    public void within5Days_Failure(){
+        Date newDate = new Date();
+        Date oldDate = new Date(newDate.getTime() - TimeUnit.DAYS.toMillis(10));
+
+        boolean result = storeService.within5Days(newDate, oldDate);
+        assertFalse(result);
+    }
 
 }
