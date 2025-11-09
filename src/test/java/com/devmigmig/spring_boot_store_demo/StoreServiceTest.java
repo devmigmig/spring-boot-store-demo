@@ -1,6 +1,8 @@
 package com.devmigmig.spring_boot_store_demo;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.text.SimpleDateFormat;
@@ -91,5 +93,15 @@ public class StoreServiceTest {
 
         assertEquals(item, result);
     }
+
+    @Test
+    public void addItemTest() throws Exception{
+        Item newItem = new Item("Cabinet", 25.0, 13.25, new SimpleDateFormat("yyyy-MM-dd").parse("2024-12-01"));
+        storeService.addItem(newItem);
+
+        verify(storeRepository, times(1)).addItem(newItem);
+    }
+
+    
 
 }
