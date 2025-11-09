@@ -143,5 +143,4 @@ public class StoreServiceTest {
         boolean result = storeService.within5Days(newDate, oldDate);
         assertFalse(result);
     }
-
 }
