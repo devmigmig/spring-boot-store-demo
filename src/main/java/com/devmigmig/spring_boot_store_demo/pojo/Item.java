@@ -34,6 +34,7 @@ public class Item {
         this.price = price;
         this.discount = discount;
         this.date = date;
+        this.id = UUID.randomUUID().toString();
     }
 
     public Item() {
