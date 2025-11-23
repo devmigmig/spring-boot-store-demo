@@ -7,15 +7,14 @@ This project simulates a basic store application and is designed for learning an
 
 ## 📌 Project Overview
 
-The **spring-boot-store-demo** showcases a minimal implementation of:
+The **spring-boot-store-demo** showcases a implementation of:
 
 - **MVC Architecture**
 - **Field Validation**
 - **Three-Layer Codebase** (Controller → Service → Repository)
 - **Beans & Dependency Injection**
+- **Lombok** for reducing boilerplate code (getters, setters, constructors, etc.)
 - **Testing**
   - Unit Testing
   - Integration Testing
 - **Thymeleaf** for server-side rendering
-
-
