@@ -11,10 +11,12 @@ import com.devmigmig.spring_boot_store_demo.constant.Constants;
 import com.devmigmig.spring_boot_store_demo.pojo.Item;
 import com.devmigmig.spring_boot_store_demo.repository.StoreRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class StoreService {
 
-    @Autowired
     StoreRepository storeRepository;
 
     public Item getItem(int index) {
