@@ -8,7 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
-
+import lombok.*;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
 
     @NotBlank(message = "Please select a category")
@@ -27,8 +31,9 @@ public class Item {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
+   
     public Item(String name, Double price, Double discount, Date date){
         this.name = name;
         this.price = price;
@@ -37,6 +42,8 @@ public class Item {
         this.id = UUID.randomUUID().toString();
     }
 
+   
+    /* Before Lombok
     public Item() {
         this.id = UUID.randomUUID().toString();
     }
@@ -88,9 +95,5 @@ public class Item {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    
-
-   
-
+    */
 }
